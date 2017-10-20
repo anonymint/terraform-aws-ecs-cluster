@@ -5,11 +5,11 @@ Terraform module decided for registry for ECS cluster with minimal friction
 
 ```hcl
 module "ecs" {
-  source = "../../"
+  source = "anonymint/ecs-cluster/aws"
 
   asg_ami_id = "ami-xxxxxx"
   asg_instance_type = "t2.micro"
-  asg_keypair_name      = "directpl-ops"
+  asg_keypair_name      = "my-key-pair"
   cluster_name = "MyFirstCluster"
 
   asg_subnet_ids         = ["subnet-xxxxxxxx", "subnet-xxxxxxxx"]
