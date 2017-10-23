@@ -12,7 +12,7 @@ variable "actions" {
   description = "List of policy actions"
 
   default = [
-    "sts:AssumeRole"
+    "sts:AssumeRole",
   ]
 }
 

@@ -20,6 +20,24 @@ module "ecs_instance_profile" {
   create_instance_role = true
 }
 
+# ECS Service Role
+module "ecs_service_role" {
+  source       = "./modules/iam_role"
+  role_name    = "${var.cluster_name}-ecs-service-role"
+  actions      = ["sts:AssumeRole"]
+  ideantifiers = ["ecs.amazonaws.com"]
+  policy_arns  = ["arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceRole"]
+}
+
+# Autoscalling role
+module "ecs_autoscale_role" {
+  source       = "./modules/iam_role"
+  role_name    = "${var.cluster_name}-autoscaling-role"
+  actions      = ["sts:AssumeRole"]
+  ideantifiers = ["application-autoscaling.amazonaws.com"]
+  policy_arns  = ["arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceAutoscaleRole"]
+}
+
 #####
 # ASG
 #####
